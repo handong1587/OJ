@@ -2,7 +2,7 @@
 
 #define MAX_N 1005
 int N, E;
-const int T = 2;
+const int T = 3;
 bool marked[MAX_N];
 bool color[MAX_N];
 bool isTwoColorable;
@@ -40,12 +40,13 @@ void dfs(int v)
 	marked[v] = true;
 	for (int w = 0; w < adjlen[v];w++)
 	{
-		if (!marked[w])
+		int v_adj = adj[v][w];
+		if (!marked[v_adj])
 		{
-			color[w] = !color[v];
-			dfs(w);
+			color[v_adj] = !color[v];
+			dfs(v_adj);
 		}
-		else if (color[w] == color[v])
+		else if (color[v_adj] == color[v])
 		{
 			isTwoColorable = false;
 		}
@@ -65,18 +66,21 @@ void solve()
 
 int main()
 {
-	freopen("Bipartitioning_Cities.txt", "r", stdin);
+	freopen("Sotong\\Bipartitioning_Cities.txt", "r", stdin);
+	allocmem();
 	for (int t = 1; t <= T;t++)
 	{
+		init();
+
 		scanf("%d%d\n", &N, &E);
 		for (int i = 0; i < E;i++)
 		{
 			int v1, v2;
-			scanf("%d%d", &v1, &v2);
+			scanf("%d %d", &v1, &v2);
 			adj[v1][adjlen[v1]++] = v2;
 			adj[v2][adjlen[v2]++] = v1;
 		}
-		init();
+		
 		solve();
 		if (isTwoColorable==false)
 		{
