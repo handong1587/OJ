@@ -1,1 +1,5 @@
-OJ.opensdf
+*.opensdf
+*.sdf
+*.v12
+Debug
+Release
