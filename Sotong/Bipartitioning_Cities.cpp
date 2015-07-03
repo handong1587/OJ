@@ -97,6 +97,7 @@ int main()
 					numColored++;
 				}
 			}
+			printf("%d ", numColored);
 			for (int v = 1,num=0; v <= N;v++)
 			{
 				if (color[v]==true)
