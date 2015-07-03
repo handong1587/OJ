@@ -2,7 +2,7 @@
 
 #define MAX_N 1005
 int N, E;
-const int T = 3;
+const int T = 10;
 bool marked[MAX_N];
 bool color[MAX_N];
 bool isTwoColorable;
