@@ -34,13 +34,16 @@ void solve()
             }
             else if(s1[i-1]==s2[j-1]){
                 dp[i][j]=dp[i-1][j-1]+1;
+                if(dp[i][j]>maxn){
+                    finalx=i;
+                    finaly=j;
+#if _DEBUG_
+                    printf("finalx=%d,finaly=%d\n",finalx,finaly);
+#endif
+                }
                 maxn=_max_(maxn,dp[i][j]);
 
                 loc[i][j].ft=TGT;
-
-                finalx=i;
-                finaly=j;
-
             }
             else{
                 dp[i][j]=_max_(dp[i-1][j],dp[i][j-1]);
@@ -65,15 +68,23 @@ void solve()
 #endif
 
     int curx=finalx,cury=finaly;
+#if _DEBUG_
+    printf("finalx=%d,finaly=%d\n",finalx,finaly);
+#endif
     int tgtn=0;
     char revs[1005];
     while(curx>=1&&cury>=1){
         if(loc[curx][cury].ft==TGT){
             revs[tgtn++]=s1[curx-1];
-#if _DEBUG_
-            printf("curx=%d,cury=%d,%c\n",curx,cury,s1[curx-1]);
-#endif
         }
+#if _DEBUG_
+        if(loc[curx][cury].ft==TGT){
+            printf("curx=%d,cury=%d,%c\n",curx,cury,s1[curx-1]);
+        }
+        else{
+            printf("curx=%d,cury=%d\n",curx,cury);
+        }
+#endif
         if(loc[curx][cury].ft==TGT){
             curx--;
             cury--;
@@ -84,13 +95,11 @@ void solve()
         else{
             cury--;
         }
-#if _DEBUG_
-        printf("curx=%d,cury=%d\n",curx,cury);
-#endif
     }
     for(int i=0;i<tgtn;i++){
         maxs[i]=revs[tgtn-1-i];
     }
+    maxs[maxn]='\0';
 }
 
 int main()
