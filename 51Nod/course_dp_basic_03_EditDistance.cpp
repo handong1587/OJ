@@ -45,12 +45,6 @@ int main()
 
     solve();
 
-    for(int i=0;i<=n1;i++){
-        for(int j=0;j<=n2;j++){
-            printf("%d%s",dp[i][j],j==n2?"\n":" ");
-        }
-    }
-
     printf("%d\n",dp[n1][n2]);
 
     return 0;
