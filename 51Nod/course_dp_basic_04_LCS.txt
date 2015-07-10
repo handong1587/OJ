@@ -1,3 +1,5 @@
+aabcccc
+ccaabbb
 acca
 cbbc
 BDCABA
