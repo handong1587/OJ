@@ -13,14 +13,19 @@ void solve()
     for(int i=0;i<M;i++){
         for(int j=i;j<M;j++){
             for(int k=0;k<N;k++){
-                dp[k]=(j==i)?mat[i][k]:(dp[k]+mat[j][k]);
+                dp[k]=0;
+            }
+            for(int k=0;k<N;k++){
+                dp[k]=(j==i)?mat[k][i]:(dp[k]+mat[k][j]);
+                printf("i=%d, j=%d, dp[%d]=%lld\n",i,j,k,dp[k]);
             }
             long long tmpmax = dp[0];
             long long endmax = dp[0];
-            for(int k=0;k<N;k++){
+            for(int k=1;k<N;k++){
                 endmax=_max_(endmax,0)+dp[k];
                 tmpmax=_max_(tmpmax,endmax);
             }
+            //printf("i=%d, j=%d, tmpmax=%lld\n",i,j,tmpmax);
             maxsum=_max_(maxsum,tmpmax);
         }
     }
