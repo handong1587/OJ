@@ -5,32 +5,36 @@
 
 int N;
 long long a[50005],b[50005];
-long long sum,maxsum,minsum,res;
+long long sum,res;
 
 void solve()
 {
     //int mid=N/2;
-    int tmpmaxsum=a[0];
-    int tmpendmax=a[0];
+    long long maxsum=a[0];
+    long long endmax=a[0];
     for(int i=1;i<N;i++){
-        tmpendmax=_max_(tmpendmax,0)+a[i];
-        tmpmaxsum=_max_(tmpmaxsum,tmpendmax);
+        endmax=_max_(endmax,0)+a[i];
+        maxsum=_max_(maxsum,endmax);
     }
 
-    int tmpminsum=b[0];
-    int tmpendmin=b[0];
+    long long maxsum2=b[0];
+    long long endmax2=b[0];
     for(int i=1;i<N;i++){
-        tmpendmin=_min_(tmpendmax,0)+b[i];
-        tmpminsum=_min_(tmpminsum,tmpendmin);
+        endmax2=_max_(endmax2,0)+b[i];
+        maxsum2=_max_(maxsum2,endmax2);
     }
-    tmpminsum*=-1;
-    res=_max_(tmpmaxsum, sum-tmpminsum);
+
+    //printf("sum=%lld, maxsum=%lld, maxsum2=%lld\n",sum,maxsum,maxsum2);
+
+    long long minsum = maxsum2 * -1;
+    //printf("%minsun=lld\n",minsum);
+    res=_max_(maxsum, sum-minsum);
     res=_max_(0,res);
 }
 
 int main()
 {
-    freopen("09_circular_array_max_interval_sum.txt","r",stdin);
+    freopen("09_circular_array_max_interval_sum_case16.txt","r",stdin);
     scanf("%d",&N);
 
     sum=0;
