@@ -16,8 +16,9 @@ int groups[256][9];
 
 int N2;
 long long **dp2;
-//long long dp2[805][50005];
 int wi2[805],pi2[805];
+#define _MEM_OPT_ 1
+long long dp3[2][50005];
 
 void slow_solve()
 {
@@ -74,17 +75,19 @@ void preprocess()
         cnt+=ng;
     }
     N2 = cnt;
+#if !_MEM_OPT_
     dp2 = (long long**)malloc(sizeof(long long *) * (N2+5));
     for (int i=0;i<(N2+5);i++) {
         dp2[i] = (long long *)malloc(sizeof(long long) * 50005);
         memset(dp2[i],0,sizeof(long long) * 50005);
     }
+#endif
 }
 
 void solve_by_01pack()
 {
     for(int j=0;j<=W;j++){
-        dp[0][j]=0;
+        dp2[0][j]=0;
     }
     for(int i=0;i<N2;i++){
         for(int j=0;j<=W;j++){
@@ -98,9 +101,27 @@ void solve_by_01pack()
     }
 }
 
+void solve_by_01pack_memoryoptimized()
+{
+    for(int j=0;j<=W;j++){
+        dp3[0][j]=0;
+    }
+    for(int i=0;i<N2;i++){
+        for(int j=0;j<=W;j++){
+            if(j<wi2[i]){
+                dp3[1][j]=dp3[0][j];
+            }
+            else{
+                dp3[1][j]=_max_(dp3[0][j],dp3[0][j-wi2[i]]+pi2[i]);
+            }
+        }
+        memcpy(dp3[0], dp3[1], sizeof(long long)*50005);
+    }
+}
+
 int main()
 {
-    freopen("10_multiple_pack_problem_case11.txt","r",stdin);
+    freopen("10_multiple_pack_problem_case12.txt","r",stdin);
     scanf("%d %d",&N,&W);
     for(int i=0;i<N;i++){
         scanf("%d %d %d",&wi[i],&pi[i],&ci[i]);
@@ -111,16 +132,29 @@ int main()
     gettimeofday(&start,NULL);
 #endif
 
+#define _FAST_SOLVE_ 1
+#if _FAST_SOLVE_
     preprocess();
+#if !_MEM_OPT_
     solve_by_01pack();
+    printf("%lld\n",dp2[N2][W]);
+#else
+    solve_by_01pack_memoryoptimized();
+    printf("%lld\n",dp3[1][W]);
+#endif
+#else
+    slow_solve();
+    printf("%lld\n",dp[N][W]);
+#endif
 
 #if _TEST_TIME_
     gettimeofday(&end,NULL);
     long long timeuse = 1000000 * ( end.tv_sec - start.tv_sec  ) + end.tv_usec -start.tv_usec;
     printf("time: %lld us\n",timeuse);
+
+    printf("N2=%d\n",N2);
 #endif
 
-    printf("%lld\n",dp2[N2][W]);
 
     //for(int i=0;i<=N2;i++){
     //    for(int j=0;j<=W;j++){
