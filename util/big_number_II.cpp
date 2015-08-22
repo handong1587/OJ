@@ -5,6 +5,8 @@
 
 using namespace std;
 
+// doesn't support negative number
+
 #define MAXN 9999
 #define DLEN 4
 
