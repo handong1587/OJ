@@ -1,5 +1,7 @@
 #include <stdio.h>
-//#include <iostream>
+
+// case: 100/100
+// copy from [Algorithm, 4th edition], Page 547
 
 #define MAX_N 1005
 int N, E;
@@ -14,16 +16,16 @@ int adjlen[MAX_N];
 void allocmem()
 {
     adj = new int *[MAX_N];
-    for (int i = 0; i < MAX_N;i++){
+    for (int i = 0; i < MAX_N; i++){
         adj[i] = new int[MAX_N];
     }
 }
 
 void init()
 {
-    for (int i = 0; i < MAX_N;i++){
+    for (int i = 0; i < MAX_N; i++){
         adjlen[i] = 0;
-        for (int j = 0; j < MAX_N;j++){
+        for (int j = 0; j < MAX_N; j++){
             adj[i][j] = 0;
         }
 
@@ -36,13 +38,13 @@ void init()
 void dfs(int v)
 {
     marked[v] = true;
-    for (int w = 0; w < adjlen[v];w++){
-        int v_adj = adj[v][w];
-        if (!marked[v_adj]){
-            color[v_adj] = !color[v];
-            dfs(v_adj);
+    for (int i = 0; i < adjlen[v]; i++){
+        int w = adj[v][i];
+        if (!marked[w]){
+            color[w] = !color[v];
+            dfs(w);
         }
-        else if (color[v_adj] == color[v]){
+        else if (color[w] == color[v]){
             isTwoColorable = false;
         }
     }
@@ -50,7 +52,7 @@ void dfs(int v)
 
 void solve()
 {
-    for (int v = 0; v < N;v++){
+    for (int v = 0; v < N; v++){
         if (!marked[v]){
             dfs(v);
         }
@@ -59,13 +61,13 @@ void solve()
 
 int main()
 {
-    freopen("Sotong\\Bipartitioning_Cities.txt", "r", stdin);
+    freopen("Bipartitioning_Cities.txt", "r", stdin);
     allocmem();
-    for (int t = 1; t <= T;t++){
+    for (int t = 1; t <= T; t++){
         init();
 
         scanf("%d%d\n", &N, &E);
-        for (int i = 0; i < E;i++){
+        for (int i = 0; i < E; i++){
             int v1, v2;
             scanf("%d %d", &v1, &v2);
             adj[v1][adjlen[v1]++] = v2;
@@ -85,7 +87,7 @@ int main()
                 }
             }
             printf("%d ", numColored);
-            for (int v = 1,num=0; v <= N;v++){
+            for (int v = 1,num=0; v <= N; v++){
                 if (color[v]==true){
                     num++;
                     printf("%d%s", v, num == numColored ? "\n" : " ");

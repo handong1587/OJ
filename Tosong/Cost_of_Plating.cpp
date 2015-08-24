@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <math.h>
 
+// case: 0/100
+// haven't done it yet
+
 int T, S, N;
 struct Location
 {
@@ -24,7 +27,7 @@ int main()
         for (int i = 0; i < N;i++){
             scanf("%d%d", &loc[i].row, &loc[i].column);
         }
-        printf("%#d\n", t);
+        printf("#%d\n", t);
     }
 
     return 0;

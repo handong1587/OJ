@@ -1,6 +1,6 @@
-//case: 100/100
-
 #include <stdio.h>
+
+// case: 100/100
 
 #define _max_(a,b) ((a)>(b)?(a):(b))
 
@@ -10,25 +10,21 @@ int maxval;
 
 int pickmax(int arr[],int start, int end, int allmaxidx[])
 {
-    if (end<start)
-    {
+    if (end<start) {
         return 0;
     }
     int maxval = arr[end];
     int nmax = 0;
     allmaxidx[nmax] = end;
     nmax++;
-    for (int i = end-1; i >=start;i--)
-    {
-        if (arr[i]>maxval)
-        {
+    for (int i = end-1; i >=start; i--){
+        if (arr[i] > maxval){
             nmax = 0;
             allmaxidx[nmax] = i;
             maxval = arr[i];
             nmax++;
         }
-        else if (arr[i]==maxval)
-        {
+        else if (arr[i]==maxval){
             allmaxidx[nmax] = i;
             nmax++;
         }
@@ -38,10 +34,8 @@ int pickmax(int arr[],int start, int end, int allmaxidx[])
 
 bool is_sorted(int arr[])
 {
-    for (int i = 0; i <N-1;i++)
-    {
-        if (arr[i]<arr[i+1])
-        {
+    for (int i = 0; i <N-1; i++){
+        if (arr[i]<arr[i+1]){
             return false;
         }
     }
@@ -51,8 +45,7 @@ bool is_sorted(int arr[])
 int array2num(int arr[])
 {
     int res = 0;
-    for (int i = 0; i<N; i++)
-    {
+    for (int i = 0; i<N; i++){
         res = res * 10 + arr[i];
     }
     return res;
@@ -61,8 +54,7 @@ int array2num(int arr[])
 void testprint(int arr[],int cur_depth)
 {
     printf("round %d: [ ",cur_depth);
-    for (int i = 0; i < N;i++)
-    {
+    for (int i = 0; i < N; i++){
         printf("%d ", arr[i]);
     }
     printf("]\n");
@@ -70,18 +62,14 @@ void testprint(int arr[],int cur_depth)
 
 void plot(int arr[],int src,int dst)
 {
-    for (int i = 0; i < N;i++)
-    {
-        if (i==src||i==dst)
-        {
+    for (int i = 0; i < N; i++){
+        if (i==src||i==dst){
             printf("[%d] ", arr[i]);
         }
-        else
-        {
+        else{
             printf(" %d  ", arr[i]);
         }
-        if (i==N-1)
-        {
+        if (i==N-1){
             printf("\n");
         }
     }
@@ -89,10 +77,8 @@ void plot(int arr[],int src,int dst)
 
 int locate(int arr[])
 {
-    for (int i = N - 1; i >= 1;i--)
-    {
-        if (arr[i]!=arr[i-1])
-        {
+    for (int i = N - 1; i >= 1; i--){
+        if (arr[i]!=arr[i-1]){
             return i;
         }
     }
@@ -101,8 +87,7 @@ int locate(int arr[])
 
 void dfs(int arr[],int start, int cur_depth,int tgt_depth)
 {
-    if (cur_depth==tgt_depth)
-    {
+    if (cur_depth==tgt_depth){
         int val = array2num(arr);
         maxval = _max_(maxval, val);
         return;
@@ -111,8 +96,7 @@ void dfs(int arr[],int start, int cur_depth,int tgt_depth)
 //     {
 //         return;
 //     }
-    if (is_sorted(arr))
-    {
+    if (is_sorted(arr)){
         int tgtidx = locate(arr);
 
         //plot(arr, tgtidx - 1, tgtidx);
@@ -130,15 +114,12 @@ void dfs(int arr[],int start, int cur_depth,int tgt_depth)
     }
     int tidxs[6];
     int nmaxidx = pickmax(arr,start, N - 1,tidxs);
-    for (int i = 0; i < nmaxidx;i++)
-    {
-        if (tidxs[i]==start) // current start number is maximum, don't do anything. dfs remaining numbers
-        {
+    for (int i = 0; i < nmaxidx; i++){
+        if (tidxs[i]==start){ // current start number is maximum, don't do anything. dfs remaining numbers
             dfs(arr,start + 1, cur_depth, tgt_depth);
         }
         // otherwise, exchange current start number and that maximum number
-        else
-        {
+        else{
             //plot(arr, start, tidxs[i]);
 
             int tmp = arr[start];
@@ -158,13 +139,11 @@ void dfs(int arr[],int start, int cur_depth,int tgt_depth)
 void solve()
 {
     int arr[6];
-    for (int i = 0; i < N;i++)
-    {
+    for (int i = 0; i < N; i++){
         arr[i] = num[i];
     }
     int maxval = 0;
-    for (int i = 0; i < N; i++)
-    {
+    for (int i = 0; i < N; i++){
         dfs(arr,i, 0, S);
     }
 }
@@ -173,25 +152,21 @@ int main()
 {
     freopen("Earning_Biggest_Prize_Money.txt", "r", stdin);
     scanf("%d\n", &T);
-    for (int t = 0; t < T;t++)
-    {
+    for (int t = 0; t < T; t++){
         scanf("%d%d\n", &D, &S);
         N = 0;
         int tmpD = D;
         int tmpnum[6];
-        for (int i = 0; i < 6;i++)
-        {
+        for (int i = 0; i < 6; i++){
             int d = tmpD % 10;
             tmpnum[i] = d;
             tmpD /= 10;
             N++;
-            if (tmpD == 0)
-            {
+            if (tmpD == 0){
                 break;
             }
         }
-        for (int i = 0; i < N;i++)
-        {
+        for (int i = 0; i < N; i++){
             num[i] = tmpnum[N - 1 - i];
         }
         maxval = -1;
