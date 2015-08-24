@@ -160,7 +160,7 @@ void solve(string S)
 
 int main()
 {
-    freopen("51Nod\\coding_challenge\\1088_longest_palindromic_substring.txt","r",stdin);
+    freopen("1088_longest_palindromic_substring.txt","r",stdin);
     scanf("%s", str);
 
     string S(str);
