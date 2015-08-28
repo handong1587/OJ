@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// 4.7.3 Suffix Array
 // 51Nod_1088: 1-12: pass; 13-25: Runtime Error
 
 #define MAX_N 1005
@@ -100,7 +101,7 @@ void construct_sa(string S, int *sa)
         }
     }
 }
-// end of suffix array<Plug>
+// end of suffix array
 
 // LCP array: Longest Common Prefix array
 void construct_lcp(string S, int *sa, int *lcp)
