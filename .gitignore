@@ -4,3 +4,10 @@
 Debug
 Release
 Sotong
+*.sln
+*.vcxproj
+*.vcxproj.filters
+.vscode
+*.opendb
+*.suo
+*.VC.db
