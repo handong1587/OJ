@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="POJ\1272_The_Perfect_Stall.cpp" />
+    <ClCompile Include="POJ\2506_Tiling.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D88FF139-8F30-4036-A5FE-EDE8A850D77A}</ProjectGuid>

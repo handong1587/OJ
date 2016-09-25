@@ -6,7 +6,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="POJ\1272_The_Perfect_Stall.cpp">
+    <ClCompile Include="POJ\2506_Tiling.cpp">
       <Filter>poj</Filter>
     </ClCompile>
   </ItemGroup>

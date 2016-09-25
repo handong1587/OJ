@@ -36,7 +36,7 @@ int main()
 {
     freopen("POJ\\2663_Tri_Tiling.txt", "r", stdin);
     int n;
-	init();
+    init();    
     while (scanf("%d", &n) != EOF) {
         if (n == -1) {
             break;
