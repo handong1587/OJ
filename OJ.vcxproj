@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="POJ\2790_Consecutive_ones.cpp" />
+    <ClCompile Include="POJ\3984_迷宫问题_bfs.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D88FF139-8F30-4036-A5FE-EDE8A850D77A}</ProjectGuid>

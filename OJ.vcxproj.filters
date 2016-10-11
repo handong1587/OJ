@@ -6,7 +6,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="POJ\2790_Consecutive_ones.cpp">
+    <ClCompile Include="POJ\3984_迷宫问题_bfs.cpp">
       <Filter>poj</Filter>
     </ClCompile>
   </ItemGroup>

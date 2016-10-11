@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int n, m;
+int n, maze;
 int map[405][405];
 int perm[405];
 int sum[405]; //sum up all 1 in each line
@@ -28,10 +28,10 @@ int isValidPerm(int col)
 }
 int dfs(int prev_col)
 {
-  if (prev_col == m) {
+  if (prev_col == maze) {
     return 1;
   }
-  for (int col = 1; col < m; col++) {
+  for (int col = 1; col < maze; col++) {
     // try permuting all non-used columns
     if (used[col] == 0 && isValidPerm(col)) {
       used[col] = 1;
@@ -55,11 +55,11 @@ int main()
 {
   freopen("POJ\\2790_Consecutive_ones.txt", "r", stdin);
   scanf("%d", &n);
-  scanf("%d", &m);
+  scanf("%d", &maze);
   for (int i = 0; i < n; i++) {
     char tmp[405];
     scanf("%s", tmp);
-    for (int j = 0; j < m; j++) {
+    for (int j = 0; j < maze; j++) {
       if (tmp[j] == '0') {
         map[i][j] = 0;
       }
@@ -77,7 +77,7 @@ int main()
   // start with second column
   dfs(1);
 
-  for (int i = 0; i < m; i++) {
+  for (int i = 0; i < maze; i++) {
     printf("%d\n", ans[i]);
   }
   return 0;
