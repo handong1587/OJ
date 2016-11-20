@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#define min(a,b) (a)<(b)?(a):(b)
+#define min(a,b) ((a)<(b)?(a):(b))
 #define MAXN 999999
 #define INF (1<<29)
 int dp[MAXN];
