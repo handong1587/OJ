@@ -3,11 +3,13 @@
 #include <string.h>
 #include <algorithm>
 
+// copy from Internet
+
 int sticks[64];    // save sticks' length
 bool used[64];
-int n;            //木棍数
-int len;        //木棒长度
-int num;        //木棒数
+int n;             // number of sticks
+int len;           // length of stick
+int num;           // number of final spliced long sticks
 
 /*==========================*\
 idx:         current stick length
